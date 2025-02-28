@@ -179,7 +179,7 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
                     SizedBox(width: MediaQuery.of(context).size.width / 8),
                     DataBox(icon: Icons.air, iconColor: Colors.white, title: 'Wind', content: '${(jsonDecode(widget.dataFetcher.currentData)['wind']['speed']*3.6).round()} km/h',),
                     SizedBox(width: MediaQuery.of(context).size.width / 16),
-                    DataBox(icon: Icons.visibility, iconColor: Colors.greenAccent, title: 'Visibility', content: '${(jsonDecode(widget.dataFetcher.currentData)['visibility'] ?? 0) / 1000} m',),
+                    DataBox(icon: Icons.visibility, iconColor: Colors.greenAccent, title: 'Visibility', content: '${(jsonDecode(widget.dataFetcher.currentData)['visibility'] ?? 0) / 1000} km',),
                     SizedBox(width: MediaQuery.of(context).size.width / 8),
                   ],
                 ),
