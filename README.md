@@ -36,7 +36,7 @@ This project uses the OpenWeatherMap API to fetch weather data. To use the app, 
 1. Clone the repository:
 
 ```bash 
-git clone https://github.com/yourusername/WeatherEase.git
+git clone https://github.com/Clamata/Flutter-Weather-Ease-app.git
 ```  
 
 2. Navigate to the project directory:
