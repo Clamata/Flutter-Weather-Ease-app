@@ -41,7 +41,7 @@ git clone https://github.com/Clamata/Flutter-Weather-Ease-app.git
 
 2. Navigate to the project directory:
   ```bash 
-cd WeatherEase  
+cd Weather-Ease-app  
 ```  
 3. Install dependencies:
   ```bash 
