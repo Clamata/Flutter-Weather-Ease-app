@@ -84,8 +84,8 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
               cityName:
                   jsonDecode(widget.dataFetcher.currentData)['name'].toString(),
               temp: jsonDecode(widget.dataFetcher.currentData)['main']['temp'].round().toString(),
-              tempMax: jsonDecode(widget.dataFetcher.data)['list'][1]['temp']['max'].round().toString(),
-              tempMin: jsonDecode(widget.dataFetcher.data)['list'][1]['temp']['min'].round().toString(),
+              tempMax: jsonDecode(widget.dataFetcher.data)['list'][0]['temp']['max'].round().toString(),
+              tempMin: jsonDecode(widget.dataFetcher.data)['list'][0]['temp']['min'].round().toString(),
               description: jsonDecode(widget.dataFetcher.currentData)['weather'][0]['description'],
             ),
             SliverToBoxAdapter(
