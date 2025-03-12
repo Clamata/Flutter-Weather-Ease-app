@@ -18,6 +18,10 @@
 -   **📊 Detailed Forecast** – Displays current conditions, temperature ranges, and weather descriptions in an organized and visually appealing layout.
 -   **🎨 Smooth Animations & Modern Design** – A polished UI with subtle animations enhances the user experience without distraction.
 
+## 🔄 State Management
+
+This project uses the `Provider` package for state management to ensure efficient and scalable state handling.
+
 ## 🔑 API Key
 
 This project uses the OpenWeatherMap API to fetch weather data. To use the app, you will need your own API key.
