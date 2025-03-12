@@ -1,16 +1,16 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
-import 'package:weather_app/weather_service/Icon_getter_service.dart';
-import 'package:weather_app/weather_service/day_getter_service.dart';
-import '../constants.dart';
+import 'package:weather_app/utils/day_utils.dart';
+import 'package:weather_app/utils/weather_icon_utils.dart';
+import '../utils/constants.dart';
 ///Weather data box displays the day, weather icon, and temperature range.
 class WeatherDataBox extends StatelessWidget {
   const WeatherDataBox(
       {super.key, this.daysAhead = 0, required this.tempMax, required this.tempMin, required this.weatherId});
   ///daysAhead represents how many days ahead to show
   final int daysAhead;
-  final int tempMax;
-  final int tempMin;
+  final String tempMax;
+  final String tempMin;
   final int weatherId;
   @override
   Widget build(BuildContext context) {
@@ -37,14 +37,14 @@ class WeatherDataBox extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Text(
-                DayGetter.get(daysAhead: daysAhead),
+                DayUtils.get(daysAhead: daysAhead),
                 style: getLowText(context),
               ),
-              IconGetter.get(weatherId),
+              WeatherIconUtils.get(weatherId),
               Padding(
                 padding: EdgeInsets.only(left: MediaQuery.of(context).size.width/70),
                 child: Text(
-                  '$tempMax° $tempMin°',
+                  '$tempMax $tempMin',
                   style: getUltraLowText(context),
                 ),
               )

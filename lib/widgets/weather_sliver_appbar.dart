@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:weather_app/weather_service/day_getter_service.dart';
-import '../constants.dart';
+import 'package:weather_app/utils/day_utils.dart';
+import '../utils/constants.dart';
 ///Custom SliverAppBar widget that displays weather information and city details.
 class WeatherSliverAppbar extends StatelessWidget {
   const WeatherSliverAppbar({super.key, required this.cityName, required this.temp, required this.tempMin, required this.tempMax, required this.description,});
@@ -29,7 +29,7 @@ class WeatherSliverAppbar extends StatelessWidget {
         background: Stack(
           fit: StackFit.expand,
           children: [
-            Image.asset(DayGetter.getImage(),
+            Image.asset(DayUtils.getImage(),
                 fit: BoxFit.cover,
                 filterQuality: FilterQuality.none,
                 isAntiAlias: false),
@@ -41,14 +41,14 @@ class WeatherSliverAppbar extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('$temp°',
+                    Text(temp,
                         style: getHighText(context).copyWith(height: MediaQuery.of(context).size.width/500)),
                     Text(description, style: getMidText(context)),
                     Divider(
                       thickness: MediaQuery.of(context).size.width/50,
                       color: Colors.white,
                     ),
-                    Text('$tempMax°/$tempMin°', style: getMidText(context)),
+                    Text('$tempMax/$tempMin', style: getMidText(context)),
                   ],
                 ),
               ),

@@ -1,15 +1,12 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
-import 'package:weather_app/weather_service/data_fetcher_service.dart';
-import 'package:weather_app/constants.dart';
-///Displays additional settings.
-class WeatherDrawer extends StatefulWidget {
-  const WeatherDrawer({super.key, required this.dataFetcher});
-  final DataFetcher dataFetcher;
-  @override
-  State<WeatherDrawer> createState() => _WeatherDrawerState();
-}
-class _WeatherDrawerState extends State<WeatherDrawer> {
+import 'package:provider/provider.dart';
+import 'package:weather_app/utils/constants.dart';
+import '../providers/data_provider.dart';
+
+class WeatherDrawer extends StatelessWidget {
+  const WeatherDrawer({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -23,15 +20,15 @@ class _WeatherDrawerState extends State<WeatherDrawer> {
           child: ListView(children: [
             DrawerHeader(
                 child: Icon(
-              Icons.cloud,
-              size: MediaQuery.of(context).size.width / 5,
-            )),
+                  Icons.cloud,
+                  size: MediaQuery.of(context).size.width / 5,
+                )),
             DropdownMenu<Units>(
               dropdownMenuEntries: Units.values
                   .map((unit) => DropdownMenuEntry<Units>(
-                      value: unit,
-                      label: unit.key,
-                      style: MenuItemButton.styleFrom(textStyle: getLowText(context))))
+                  value: unit,
+                  label: unit.key,
+                  style: MenuItemButton.styleFrom(textStyle: getLowText(context))))
                   .toList(),
               leadingIcon: Icon(
                 Icons.thermostat,
@@ -43,9 +40,7 @@ class _WeatherDrawerState extends State<WeatherDrawer> {
                   enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(color: Colors.transparent))),
               onSelected: (value) async {
-                  widget.dataFetcher.unit = value!.value;
-                  await widget.dataFetcher.fetchData();
-                  setState(() {});
+                await context.read<DataProvider>().setUnit(value!.value);
               },
             ),
             ListTile(
@@ -69,3 +64,4 @@ class _WeatherDrawerState extends State<WeatherDrawer> {
     );
   }
 }
+

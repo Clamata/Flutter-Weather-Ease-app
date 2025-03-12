@@ -1,36 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:weather_app/weather_service/data_fetcher_service.dart';
-import '../../constants.dart';
-//Allows to search cities for weather forecast
-class SearchBox extends StatefulWidget {
-  const SearchBox(
-      {super.key,
-        this.width,
-        required this.dataFetcher,
-        required this.city});
-  final DataFetcher dataFetcher;
-  final double? width;
-  final String city;
+import 'package:provider/provider.dart';
+import '../providers/data_provider.dart';
+import '../utils/constants.dart';
 
-  @override
-  State<SearchBox> createState() => _SearchBoxState();
-}
-class _SearchBoxState extends State<SearchBox> {
-  final TextEditingController controller = TextEditingController();
+class SearchBox extends StatelessWidget {
+  const SearchBox({super.key, required this.width});
+  final double width;
   @override
   Widget build(BuildContext context) {
-    widget.width ?? MediaQuery.of(context).size.width / 1.4;
+    final TextEditingController controller = TextEditingController();
     return Column(
       children: [
         Row(
           children: [
             SizedBox(
               width: (MediaQuery.of(context).size.width -
-                  MediaQuery.of(context).size.width / 1.4) /
+                      MediaQuery.of(context).size.width / 1.4) /
                   2,
             ),
             Container(
-              width: widget.width,
+              width: width,
               decoration: BoxDecoration(
                   gradient: LinearGradient(
                     colors: [kSteelBlue, kDarkSteel],
@@ -61,15 +50,11 @@ class _SearchBoxState extends State<SearchBox> {
                         borderSide: BorderSide(color: kDarkSteel, width: 3)),
                     labelText: 'Search city...',
                     labelStyle: getLowText(context),
-                    hintText: widget.city,
+                    hintText: context.watch<DataProvider>().city,
                     hintStyle: getLowText(context, color: Colors.white30)),
                 controller: controller,
-                onChanged: (city) async {
-                  widget.dataFetcher.city = city;
-                  widget.dataFetcher.latitude = null;
-                  widget.dataFetcher.longitude = null;
-                  await widget.dataFetcher.fetchData();
-                  setState(() {});
+                onSubmitted: (city) async {
+                  await context.read<DataProvider>().setCity(city);
                 },
               ),
             ),

@@ -1,4 +1,4 @@
-class DayGetter {
+class DayUtils {
   ///Returns the name of the day based on the current weekday.
   static String get({int daysAhead = 0}) {
     DateTime now = DateTime.now();
@@ -7,25 +7,18 @@ class DayGetter {
     switch (dayNum) {
       case 1:
         return 'Mon';
-        break;
       case 2:
         return 'Tue';
-        break;
       case 3:
         return 'Wed';
-        break;
       case 4:
         return 'Thu';
-        break;
       case 5:
         return 'Fri';
-        break;
       case 6:
         return 'Sat';
-        break;
       case 7:
         return 'Sun';
-        break;
       default:
         return '';
     }

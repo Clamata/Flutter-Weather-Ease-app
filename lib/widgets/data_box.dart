@@ -1,6 +1,6 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
-import '../constants.dart';
+import '../utils/constants.dart';
 ///Displays a box containing an icon, a title, and some content.
 class DataBox extends StatelessWidget {
   const DataBox(
