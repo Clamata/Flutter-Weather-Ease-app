@@ -18,7 +18,7 @@ class WeatherSliverAppbar extends StatelessWidget {
       forceElevated: true,
       backgroundColor: kDarkSteel,
       surfaceTintColor: Colors.transparent,
-      ///Size of SliverAppBar depending on device width and image aspect ratio
+      ///Size of SliverAppBar depending on device width and image aspect ratio2
       expandedHeight: MediaQuery.of(context).size.width / (213 / 167),
       pinned: true,
       title: Text(

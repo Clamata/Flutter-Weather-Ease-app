@@ -16,7 +16,7 @@ class AnimationProvider extends ChangeNotifier {
       _scroll();
     });
   }
-
+  //getters
   ScrollController get scrollController => _scrollController;
   AnimationController get textAnimationController => _textAnimationController;
   AnimationController get textFieldAnimationController => _textFieldAnimationController;
@@ -30,23 +30,23 @@ class AnimationProvider extends ChangeNotifier {
   /// Handles scroll events and updates animations based on scroll position.
   void _scroll() {
     // If scrolling is not active, return early.
-    if (!_scrollController.position.isScrollingNotifier.value) return;
+    if (!scrollController.position.isScrollingNotifier.value) return;
     // Calculates alignment value (from -1 to 1)  by scroll position and screen size.
-    alignAnimation = (_scrollController.position.pixels / screenWidth * 3).clamp(0, 2) - 1;
+    alignAnimation = (scrollController.position.pixels / screenWidth * 3).clamp(0, 2) - 1;
     // Defines _textAnimationController value by value of alignment.
     if (alignAnimation >= 0.0) {
-      _textAnimationController.forward();
-    } else if (_textAnimationController.isForwardOrCompleted) {
-      _textAnimationController.reverse();
+      textAnimationController.forward();
+    } else if (textAnimationController.isForwardOrCompleted) {
+      textAnimationController.reverse();
     }
     // Defines _textFieldAnimationController by scroll position.
-    if (_scrollController.position.pixels >=
-        _scrollController.position.maxScrollExtent * 0.78) {
-      if (!_textFieldAnimationController.isCompleted) {
-        _textFieldAnimationController.forward();
+    if (scrollController.position.pixels >=
+        scrollController.position.maxScrollExtent * 0.78) {
+      if (!textFieldAnimationController.isCompleted) {
+        textFieldAnimationController.forward();
       }
     } else {
-      _textFieldAnimationController.reverse();
+      textFieldAnimationController.reverse();
     }
     notifyListeners();
   }
@@ -54,8 +54,8 @@ class AnimationProvider extends ChangeNotifier {
   @override
   void dispose() {
     super.dispose();
-    _textAnimationController.dispose();
-    _textFieldAnimationController.dispose();
-    _scrollController.dispose();
+    textAnimationController.dispose();
+    textFieldAnimationController.dispose();
+    scrollController.dispose();
   }
 }
